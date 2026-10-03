@@ -83,7 +83,6 @@ function kgText(v) {
 function render(data) {
   renderHero(data.cat || {});
   renderStats(data);
-  renderNext(data.nextVisit);
   renderWeights();
   renderFilters();
   renderTimeline();
@@ -141,40 +140,6 @@ function renderStats(data) {
       </div>`
     )
     .join('');
-}
-
-/* ---------- sıradaki ziyaret ---------- */
-function renderNext(next) {
-  const card = $('nextCard');
-  if (!next || !next.date) {
-    card.hidden = true;
-    return;
-  }
-  const target = parseDate(next.date);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const diff = daysBetween(today, target);
-  if (diff < -1) {
-    card.hidden = true;
-    return;
-  }
-  card.hidden = false;
-
-  const count = diff <= 0 ? 'Bugün' : diff;
-  const unit = diff <= 0 ? '' : diff === 1 ? 'gün' : 'gün';
-
-  $('nextVisitBody').innerHTML = `
-    <div class="next-row">
-      <div class="next-emoji" aria-hidden="true">🗓️</div>
-      <div class="next-info">
-        <span class="next-title">${escapeHtml(next.title || 'Yaklaşan ziyaret')}</span>
-        <span class="next-meta">${escapeHtml(formatLong(next.date))}</span>
-      </div>
-      <div class="next-count">
-        <b>${escapeHtml(String(count))}</b>
-        <span>${unit}</span>
-      </div>
-    </div>`;
 }
 
 function escapeHtml(str) {
