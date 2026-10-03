@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pakize 🐾</title>
+  <meta name="description" content="Pakize adlı tatlı kedimizin kişisel takip uygulaması: aşılar, parazit, kilo ve sağlık kayıtları bir arada." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="pakize.json" />
+  <meta name="theme-color" content="#f6a623" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Pakize" />
+
+  <!-- Icons (appicon.png is used as favicon + apple touch icon) -->
+  <link rel="icon" type="image/png" href="appicon.png" />
+  <link rel="apple-touch-icon" href="appicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
+
+  <main class="wrap" id="app">
+    <!-- HERO -->
+    <section class="hero card">
+      <div class="hero-top">
+        <div class="avatar-ring">
+          <img id="profileImg" class="avatar" src="profileimg.png" alt="Pakize'nin fotoğrafı" width="512" height="512" />
+          <span class="paw-badge" aria-hidden="true">🐾</span>
+        </div>
+        <h1 id="catName" class="cat-name">Pakize</h1>
+        <p id="catBio" class="cat-bio"></p>
+        <ul id="catChips" class="chips" aria-label="Pakize hakkında"></ul>
+      </div>
+      <div class="hero-age">
+        <div class="age-item">
+          <span class="age-value" id="ageValue">—</span>
+          <span class="age-label">Yaş</span>
+        </div>
+        <div class="age-sep"></div>
+        <div class="age-item">
+          <span class="age-value" id="daysValue">—</span>
+          <span class="age-label">Günlük</span>
+        </div>
+        <div class="age-sep"></div>
+        <div class="age-item">
+          <span class="age-value small" id="birthValue">—</span>
+          <span class="age-label">Doğum</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK STATS -->
+    <section class="stats" id="statsGrid" aria-label="Özet bilgiler"></section>
+
+    <!-- NEXT VISIT -->
+    <section class="card next-card" id="nextCard" hidden>
+      <div class="section-head">
+        <h2>Sıradaki 🗓️</h2>
+      </div>
+      <div id="nextVisitBody"></div>
+    </section>
+
+    <!-- WEIGHT -->
+    <section class="card">
+      <div class="section-head">
+        <h2>Kilo Takibi ⚖️</h2>
+        <span class="head-badge" id="weightBadge">—</span>
+      </div>
+      <div class="chart-wrap">
+        <svg id="weightChart" class="chart" viewBox="0 0 340 170" role="img" aria-label="Kilo değişim grafiği"></svg>
+      </div>
+      <ul class="weight-list" id="weightList"></ul>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="card">
+      <div class="section-head">
+        <h2>Sağlık Kayıtları 📋</h2>
+      </div>
+      <div class="filters" id="filterBar" role="tablist" aria-label="Kayıt türü filtresi"></div>
+      <ol class="timeline" id="timeline"></ol>
+      <p class="empty" id="timelineEmpty" hidden>Bu türde kayıt bulunmuyor.</p>
+    </section>
+
+    <footer class="footer">
+      <p><span id="footerName">Pakize</span> için sevgiyle yapıldı 💛</p>
+    </footer>
+  </main>
+
+  <!-- Loading / error overlays -->
+  <div class="status-overlay" id="loadingOverlay">
+    <div class="loader" aria-hidden="true"></div>
+    <p>Pakize yükleniyor…</p>
+  </div>
+  <div class="status-overlay error" id="errorOverlay" hidden>
+    <div class="error-emoji">🙀</div>
+    <p id="errorText">Bilgiler yüklenemedi.</p>
+    <button class="btn" id="retryBtn" type="button">Tekrar dene</button>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

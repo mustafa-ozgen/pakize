@@ -1,0 +1,44 @@
+{
+  "name": "Pakize",
+  "short_name": "Pakize",
+  "description": "Pakize adlı tatlı kedimizin kişisel takip uygulaması: aşılar, parazit, kilo ve sağlık kayıtları bir arada.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff6ec",
+  "theme_color": "#f6a623",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["lifestyle", "health", "pets"],
+  "icons": [
+    { "src": "appicon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "appicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "appicon.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "cat": {
+    "name": "Pakize",
+    "species": "Kedi",
+    "breed": "British Shorthair",
+    "gender": "Kız",
+    "birthDate": "2026-03-01",
+    "photo": "profileimg.png",
+    "accent": "#f6a623",
+    "bio": "Aramıza katılan tatlı mı tatlı, meraklı mı meraklı minik kızımız 🐾"
+  },
+  "events": [
+    { "date": "2026-06-06", "type": "parazit", "title": "İç-Dış Parazit" },
+    { "date": "2026-08-29", "type": "parazit", "title": "İç-Dış Parazit" },
+    { "date": "2026-08-29", "type": "kilo", "title": "Kilo Ölçümü", "value": 2000, "unit": "gr" },
+    { "date": "2026-09-05", "type": "kan", "title": "Kan Alma" },
+    { "date": "2026-09-05", "type": "asi", "title": "Karma Aşı 1" },
+    { "date": "2026-09-26", "type": "kilo", "title": "Kilo Ölçümü", "value": 2300, "unit": "gr" },
+    { "date": "2026-09-26", "type": "asi", "title": "Karma Aşı 2" },
+    { "date": "2026-10-03", "type": "kilo", "title": "Kilo Ölçümü", "value": 2400, "unit": "gr" },
+    { "date": "2026-10-03", "type": "asi", "title": "Kuduz Aşısı" }
+  ],
+  "nextVisit": {
+    "date": "2026-11-03",
+    "title": "Kuduz Aşısı Tekrarı (hatırlatma)"
+  }
+}
