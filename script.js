@@ -44,7 +44,11 @@ function formatDot(str) {
   return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
 }
 function daysBetween(a, b) {
-  return Math.round((b - a) / 86400000);
+  // Saat dilimini hesaba katmamak için iki tarihi de gece yarısına sabitleriz.
+  // Aksi halde öğlen vakti fark 218.5 gün'e çıkıp Math.round ile 219'a yuvarlanır.
+  const da = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+  const db = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+  return Math.round((db - da) / 86400000);
 }
 
 /* ---------- yaş hesabı ---------- */
