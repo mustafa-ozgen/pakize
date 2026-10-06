@@ -8,11 +8,11 @@ const DATA_URL = 'pakize.json';
 
 /* Kayıt türleri: etiket, ikon ve renk */
 const TYPE_META = {
-  parazit: { label: 'İç-Dış Parazit', icon: '🛡️', color: '#8b5cf6' },
-  asi:     { label: 'Aşı',            icon: '💉', color: '#22a06b' },
-  kan:     { label: 'Kan Tahlili',    icon: '🩸', color: '#ef4444' },
+  parazit: { label: 'İç-Dış Parazit', icon: '🛡️', color: '#a78bfa' },
+  asi:     { label: 'Aşı',            icon: '💉', color: '#10b981' },
+  kan:     { label: 'Kan Tahlili',    icon: '🩸', color: '#fb7185' },
   kilo:    { label: 'Kilo Ölçümü',    icon: '⚖️', color: '#f59e0b' },
-  ameliyat: { label: 'Ameliyat',      icon: '🔪', color: '#3b82f6' }
+  ameliyat: { label: 'Ameliyat',      icon: '🔪', color: '#60a5fa' }
 };
 
 /* Hatırlatma süreleri (JSON'daki reminderIntervals yoksa yedek olarak kullanılır) */
@@ -119,7 +119,7 @@ function renderReminders(data) {
   }
   
   container.innerHTML = reminders.map(r => {
-    const meta = TYPE_META[r.type] || { label: r.type || '', icon: '📅', color: '#f6a623' };
+    const meta = TYPE_META[r.type] || { label: r.type || '', icon: '📅', color: '#ec4899' };
     const icon = r.icon || (TYPE_META[r.type] && TYPE_META[r.type].icon) || '📅';
     let daysText;
     if (r.daysUntil < 0) {
@@ -252,8 +252,8 @@ function renderChart(weights) {
 
   let out = `<defs>
     <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f6a623" stop-opacity="0.38"/>
-      <stop offset="100%" stop-color="#f6a623" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0"/>
     </linearGradient>
   </defs>`;
 
@@ -278,7 +278,7 @@ function renderChart(weights) {
     const cx = xAt(i), cy = yAt(w.value);
     const last = i === weights.length - 1;
     out += `<circle class="dot${last ? ' last' : ''}" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${last ? 6 : 5}"/>`;
-    out += `<text class="axis-label" x="${cx.toFixed(1)}" y="${(cy - 12).toFixed(1)}" text-anchor="middle" style="fill:${last ? '#ff7a59' : '#f6a623'}">${w.value}</text>`;
+    out += `<text class="axis-label" x="${cx.toFixed(1)}" y="${(cy - 12).toFixed(1)}" text-anchor="middle" style="fill:${last ? '#db2777' : '#ec4899'}">${w.value}</text>`;
     if (showAll || i === 0 || last) {
       out += `<text class="axis-label" x="${cx.toFixed(1)}" y="${H - 10}" text-anchor="middle">${formatDot(w.date).slice(0, 5)}</text>`;
     }
@@ -344,7 +344,7 @@ function renderTimeline() {
 
   ol.innerHTML = list
     .map((e) => {
-      const meta = TYPE_META[e.type] || { label: e.type || '', icon: '📌', color: '#f6a623' };
+      const meta = TYPE_META[e.type] || { label: e.type || '', icon: '📌', color: '#ec4899' };
       const valueHtml =
         e.value != null
           ? `<span class="tl-value">${escapeHtml(formatGram(e.value))}</span>`

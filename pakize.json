@@ -6,8 +6,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff6ec",
-  "theme_color": "#f6a623",
+  "background_color": "#fff0f6",
+  "theme_color": "#ec4899",
   "lang": "tr",
   "dir": "ltr",
   "categories": ["lifestyle", "health", "pets"],
@@ -23,7 +23,7 @@
     "gender": "Kız",
     "birthDate": "2026-03-01",
     "photo": "profileimg.png",
-    "accent": "#f6a623",
+    "accent": "#ec4899",
     "bio": "Aramıza katılan tatlı mı tatlı, meraklı mı meraklı minik kızımız 🐾"
   },
   "events": [
