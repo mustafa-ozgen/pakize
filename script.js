@@ -15,6 +15,15 @@ const TYPE_META = {
   ameliyat: { label: 'Ameliyat',      icon: '🔪', color: '#3b82f6' }
 };
 
+/* Hatırlatma süreleri (JSON'daki reminderIntervals yoksa yedek olarak kullanılır) */
+const REMINDER_INTERVALS = {
+  asi: { months: 24, label: 'Karma Aşı Tekrarı', titleMatch: 'karma', icon: '💉' },
+  kuduz: { months: 12, label: 'Kuduz Aşısı Tekrarı', titleMatch: 'kuduz', icon: '💉' },
+  kan: { months: 12, label: 'Kan Tahlili Tekrarı', icon: '🩸' },
+  parazit: { months: 3, label: 'İç/Dış Parazit Tekrarı', icon: '🛡️' },
+  ameliyat: { months: 12, label: 'Ameliyat Kontrolü', icon: '🔪' }
+};
+
 const MONTHS_LONG = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 const MONTHS_SHORT = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
 
@@ -91,8 +100,52 @@ function render(data) {
   renderWeights();
   renderFilters();
   renderTimeline();
+  renderReminders(data);
   document.title = `${(data.cat && data.cat.name) || 'Pakize'} 🐾`;
   $('footerName').textContent = (data.cat && data.cat.name) || 'Pakize';
+}
+
+/* ---------- hatırlatmalar ---------- */
+function renderReminders(data) {
+  const intervals = data.reminderIntervals || REMINDER_INTERVALS;
+  const reminders = calculateReminders(data.events || [], intervals);
+  const container = $('remindersSection');
+  
+  if (!container) return;
+  
+  if (reminders.length === 0) {
+    container.innerHTML = '<p>Hatırlatma bulunmamaktadır.</p>';
+    return;
+  }
+  
+  container.innerHTML = reminders.map(r => {
+    const meta = TYPE_META[r.type] || { label: r.type || '', icon: '📅', color: '#f6a623' };
+    const icon = r.icon || (TYPE_META[r.type] && TYPE_META[r.type].icon) || '📅';
+    let daysText;
+    if (r.daysUntil < 0) {
+      daysText = `Gecikti! ${Math.abs(r.daysUntil)} gün önce yapılmış olmalıydı`;
+    } else if (r.daysUntil === 0) {
+      daysText = 'Bugün!';
+    } else if (r.daysUntil === 1) {
+      daysText = 'Yarın';
+    } else if (r.daysUntil <= 7) {
+      daysText = `${r.daysUntil} gün içinde`;
+    } else if (r.daysUntil <= 60) {
+      daysText = `${Math.ceil(r.daysUntil / 7)} hafta içinde`;
+    } else {
+      daysText = `${Math.round(r.daysUntil / 30)} ay içinde`;
+    }
+    
+    const overdue = r.daysUntil < 0;
+    return `<div class="reminder-item${overdue ? ' overdue' : ''}">
+      <div class="reminder-icon" style="background:${meta.color};color:#fff">${icon}</div>
+      <div class="reminder-details">
+        <h3>${escapeHtml(r.title)}</h3>
+        <p class="reminder-date">${formatDot(r.dateISO)}</p>
+        <p class="reminder-days">${daysText}</p>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 /* ---------- hero ---------- */
@@ -315,6 +368,52 @@ function hexToRgba(hex, alpha) {
   const g = parseInt(h.substring(2, 4), 16);
   const b = parseInt(h.substring(4, 6), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+/* ---------- hatıratma hesaplama ---------- */
+function calculateReminders(events, reminderIntervals) {
+  const now = new Date();
+  const reminders = [];
+
+  // Her hatırlatma tipi için en son yapılan tarihi bul ve hesapla
+  Object.entries(reminderIntervals).forEach(([eventType, intervalConfig]) => {
+    // titleMatch verilmişse başlığa göre, verilmemişse type'a göre filtrele
+    // (ör. "Kuduz Aşısı" type:asi ile kayıtlı olduğu için başlık eşleşmesi gerekir)
+    const candidates = events.filter((e) => {
+      if (!e.date) return false;
+      if (intervalConfig.titleMatch) {
+        return String(e.title || '').toLowerCase().includes(intervalConfig.titleMatch.toLowerCase());
+      }
+      return e.type === eventType;
+    });
+
+    const lastEvent = candidates.sort((a, b) => parseDate(b.date) - parseDate(a.date))[0];
+    if (!lastEvent) return;
+
+    const lastDate = parseDate(lastEvent.date);
+    // Bileşenlerle kuruyoruz; ay sonu taşmaları (ör. 31 Ocak + 1 ay) güvenli şekilde normalize olur.
+    const nextDate = new Date(
+      lastDate.getFullYear(),
+      lastDate.getMonth() + intervalConfig.months,
+      lastDate.getDate()
+    );
+    const daysUntil = Math.ceil((nextDate - now) / (1000 * 60 * 60 * 24));
+    const pad = (n) => String(n).padStart(2, '0');
+
+    reminders.push({
+      type: eventType,
+      title: intervalConfig.label,
+      icon: intervalConfig.icon,
+      // toISOString yerine yerel bileşenlerden üretiriz; UTC'ye geçişte gün kaymasın diye.
+      dateISO: `${nextDate.getFullYear()}-${pad(nextDate.getMonth() + 1)}-${pad(nextDate.getDate())}`,
+      daysUntil: daysUntil,
+      lastDate: lastEvent.date,
+      intervalMonths: intervalConfig.months
+    });
+  });
+
+  // Tarihe göre sırala (yakındakiler önce)
+  return reminders.sort((a, b) => parseDate(a.dateISO) - parseDate(b.dateISO));
 }
 
 /* ---------- veri yükleme ---------- */

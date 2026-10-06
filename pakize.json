@@ -38,6 +38,13 @@
     { "date": "2026-10-03", "type": "asi", "title": "Kuduz Aşısı" },
     { "date": "2026-10-10", "type": "ameliyat", "title": "Kısırlaştırma" }
   ],
+  "reminderIntervals": {
+    "asi": { "months": 24, "label": "Karma Aşı Tekrarı", "titleMatch": "karma", "icon": "💉" },
+    "kuduz": { "months": 12, "label": "Kuduz Aşısı Tekrarı", "titleMatch": "kuduz", "icon": "💉" },
+    "kan": { "months": 12, "label": "Kan Tahlili Tekrarı", "icon": "🩸" },
+    "parazit": { "months": 3, "label": "İç/Dış Parazit Tekrarı", "icon": "🛡️" },
+    "ameliyat": { "months": 12, "label": "Ameliyat Kontrolü", "icon": "🔪" }
+  },
   "nextVisit": {
     "date": "2026-11-03",
     "title": "Kuduz Aşısı Tekrarı (hatırlatma)"
