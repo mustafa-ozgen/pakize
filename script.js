@@ -11,7 +11,8 @@ const TYPE_META = {
   parazit: { label: 'İç-Dış Parazit', icon: '🛡️', color: '#8b5cf6' },
   asi:     { label: 'Aşı',            icon: '💉', color: '#22a06b' },
   kan:     { label: 'Kan Tahlili',    icon: '🩸', color: '#ef4444' },
-  kilo:    { label: 'Kilo Ölçümü',    icon: '⚖️', color: '#f59e0b' }
+  kilo:    { label: 'Kilo Ölçümü',    icon: '⚖️', color: '#f59e0b' },
+  ameliyat: { label: 'Ameliyat',      icon: '🔪', color: '#3b82f6' }
 };
 
 const MONTHS_LONG = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];

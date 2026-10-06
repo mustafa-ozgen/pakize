@@ -3,7 +3,7 @@
    Uygulamanın çevrimdışı çalışmasını ve telefona yüklenebilmesini sağlar.
    =========================================================== */
 
-const CACHE = 'pakize-v4';
+const CACHE = 'pakize-v5';
 
 const APP_SHELL = [
   './',

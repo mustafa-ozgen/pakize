@@ -35,7 +35,8 @@
     { "date": "2026-09-26", "type": "kilo", "title": "Kilo Ölçümü", "value": 2300, "unit": "gr" },
     { "date": "2026-09-26", "type": "asi", "title": "Karma Aşı 2" },
     { "date": "2026-10-03", "type": "kilo", "title": "Kilo Ölçümü", "value": 2400, "unit": "gr" },
-    { "date": "2026-10-03", "type": "asi", "title": "Kuduz Aşısı" }
+    { "date": "2026-10-03", "type": "asi", "title": "Kuduz Aşısı" },
+    { "date": "2026-10-10", "type": "ameliyat", "title": "Kısırlaştırma" }
   ],
   "nextVisit": {
     "date": "2026-11-03",
