@@ -44,9 +44,5 @@
     "kan": { "months": 12, "label": "Kan Tahlili Tekrarı", "icon": "🩸" },
     "parazit": { "months": 3, "label": "İç/Dış Parazit Tekrarı", "icon": "🛡️" },
     "ameliyat": { "months": 12, "label": "Ameliyat Kontrolü", "icon": "🔪" }
-  },
-  "nextVisit": {
-    "date": "2026-11-03",
-    "title": "Kuduz Aşısı Tekrarı (hatırlatma)"
   }
 }
