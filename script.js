@@ -11,8 +11,8 @@ const TYPE_META = {
   parazit: { label: 'İç-Dış Parazit', icon: '🛡️', color: '#a78bfa' },
   asi:     { label: 'Aşı',            icon: '💉', color: '#10b981' },
   kan:     { label: 'Kan Tahlili',    icon: '🩸', color: '#fb7185' },
-  kilo:    { label: 'Kilo Ölçümü',    icon: '⚖️', color: '#f59e0b' },
-  ameliyat: { label: 'Ameliyat',      icon: '🔪', color: '#60a5fa' }
+  kilo:    { label: 'Kilo Ölçümü',    icon: '📏', color: '#f59e0b' },
+  ameliyat: { label: 'Ameliyat',      icon: '🩹', color: '#60a5fa' }
 };
 
 /* Hatırlatma süreleri (JSON'daki reminderIntervals yoksa yedek olarak kullanılır) */
@@ -21,7 +21,7 @@ const REMINDER_INTERVALS = {
   kuduz: { months: 12, label: 'Kuduz Aşısı Tekrarı', titleMatch: 'kuduz', icon: '💉' },
   kan: { months: 12, label: 'Kan Tahlili Tekrarı', icon: '🩸' },
   parazit: { months: 3, label: 'İç/Dış Parazit Tekrarı', icon: '🛡️' },
-  ameliyat: { months: 12, label: 'Ameliyat Kontrolü', icon: '🔪' }
+  ameliyat: { months: 12, label: 'Ameliyat Kontrolü', icon: '🩹' }
 };
 
 const MONTHS_LONG = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
@@ -183,7 +183,7 @@ function renderStats(data) {
 
   const stats = [
     { icon: '🎂', value: age ? ageShort(age) : '—', label: 'Yaş' },
-    { icon: '⚖️', value: lastW ? kgText(lastW.value) : '—', label: 'Son Kilo' },
+    { icon: '📏', value: lastW ? kgText(lastW.value) : '—', label: 'Son Kilo' },
     { icon: '💉', value: asiCount + ' doz', label: 'Aşı' },
     { icon: '📋', value: events.length + ' kayıt', label: 'Toplam' }
   ];
