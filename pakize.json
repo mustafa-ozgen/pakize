@@ -38,6 +38,8 @@
     { "date": "2026-10-03", "type": "asi", "title": "Kuduz Aşısı" },
 	{ "date": "2026-10-10", "type": "kilo", "title": "Kilo Ölçümü", "value": 2520, "unit": "gr" },
 	{ "date": "2026-10-19", "type": "kilo", "title": "Kilo Ölçümü", "value": 2430, "unit": "gr" },
+	{ "date": "2026-10-25", "type": "parazit", "title": "İç-Dış Parazit" },
+	{ "date": "2026-10-25", "type": "kilo", "title": "Kilo Ölçümü", "value": 2580, "unit": "gr" },
     { "date": "2026-10-10", "type": "ameliyat", "title": "Kısırlaştırma" }
   ],
   "reminderIntervals": {
