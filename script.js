@@ -20,8 +20,8 @@ const REMINDER_INTERVALS = {
   asi: { months: 24, label: 'Karma Aşı Tekrarı', titleMatch: 'karma', icon: '💉' },
   kuduz: { months: 12, label: 'Kuduz Aşısı Tekrarı', titleMatch: 'kuduz', icon: '💉' },
   kan: { months: 12, label: 'Kan Tahlili Tekrarı', icon: '🩸' },
-  parazit: { months: 3, label: 'İç/Dış Parazit Tekrarı', icon: '🛡️' },
-  ameliyat: { months: 12, label: 'Ameliyat Kontrolü', icon: '✂️' }
+  parazit: { months: 3, label: 'İç/Dış Parazit Tekrarı', icon: '🛡️' }
+  //ameliyat: { months: 12, label: 'Ameliyat Kontrolü', icon: '✂️' }
 };
 
 const MONTHS_LONG = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
