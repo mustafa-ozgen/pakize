@@ -159,7 +159,6 @@ function renderHero(cat) {
   $('catBio').textContent = cat.bio || '';
 
   const chips = [];
-  if (cat.species) chips.push('🐱 ' + cat.species);
   if (cat.breed) chips.push('🏷️ ' + cat.breed);
   if (cat.gender) chips.push('💗 ' + cat.gender);
   $('catChips').innerHTML = chips.map((c) => `<li>${escapeHtml(c)}</li>`).join('');
@@ -179,12 +178,22 @@ function renderStats(data) {
   const lastW = STATE.weights.length ? STATE.weights[STATE.weights.length - 1] : null;
   const asiCount = events.filter((e) => e.type === 'asi').length;
 
+  // Asi aşı türlerini JSON'dan çek
+  const asiEvents2 = events.filter((e) => e.type === 'asi');
+  const asiTypeMap = { karma: 'karma', kuduz: 'kuduz' };
+  const asiTypes = asiEvents2
+    .map((e) => e.title?.toLowerCase() || '')
+    .filter((t) => t)
+    .map((t) => (t.includes('karma') ? 'karma' : 'kuduz'))
+    .filter((v, i, self) => self.indexOf(v) === i);
+  const asiNote = asiTypes.length > 0 ? ` (${asiTypes.join(', ')})` : '';
+
   const age = cat.birthDate ? computeAge(cat.birthDate) : null;
 
   const stats = [
     { icon: '🎂', value: age ? ageShort(age) : '—', label: 'Yaş' },
     { icon: '📏', value: lastW ? kgText(lastW.value) : '—', label: 'Son Kilo' },
-    { icon: '💉', value: asiCount + ' doz', label: 'Aşı' },
+    { icon: '💉', value: asiCount + ' doz', label: 'Aşı' + asiNote },
     { icon: '📋', value: events.length + ' kayıt', label: 'Toplam' }
   ];
 
