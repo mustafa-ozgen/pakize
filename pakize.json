@@ -18,9 +18,8 @@
   ],
   "cat": {
     "name": "Pakize",
-    "species": "Kedi",
     "breed": "British Shorthair",
-    "gender": "Kız",
+    "gender": "Dişi",
     "birthDate": "2026-03-01",
     "photo": "profileimg.png",
     "accent": "#ec4899",
