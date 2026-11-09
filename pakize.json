@@ -39,7 +39,8 @@
 	{ "date": "2026-10-19", "type": "kilo", "title": "Kilo Ölçümü", "value": 2430, "unit": "gr" },
 	{ "date": "2026-10-25", "type": "parazit", "title": "İç-Dış Parazit" },
 	{ "date": "2026-10-25", "type": "kilo", "title": "Kilo Ölçümü", "value": 2580, "unit": "gr" },
-    { "date": "2026-10-10", "type": "ameliyat", "title": "Kısırlaştırma" }
+    { "date": "2026-10-10", "type": "ameliyat", "title": "Kısırlaştırma" },
+	{ "date": "2026-11-09", "type": "kilo", "title": "Kilo Ölçümü", "value": 2850, "unit": "gr" }
   ],
   "reminderIntervals": {
     "asi": { "months": 24, "label": "Karma Aşı Tekrarı", "titleMatch": "karma", "icon": "💉" },
